@@ -9,15 +9,14 @@ public class NPCEmotionController : MonoBehaviour
     [SerializeField] private string[] glowMaterialKeywords = { "Glow", "Eyes" };
 
     [Header("Emotion Colors")]
-    [SerializeField] private Color neutralColor = Color.green;
-    [SerializeField] private Color anxietyColor = Color.cyan;
-    [SerializeField] private Color fearColor = new Color(0.6f, 0.8f, 1f);
-    [SerializeField] private Color angerColor = Color.red;
-    [SerializeField] private Color calmColor = new Color(0.4f, 1f, 0.4f);
+    [SerializeField] private Color neutralColor = new Color(0.1f, 1f, 0.2f);
+    [SerializeField] private Color anxietyColor = new Color(0f, 0.45f, 1f);
+    [SerializeField] private Color fearColor = new Color(0.15f, 0.15f, 1f);
+    [SerializeField] private Color angerColor = new Color(1f, 0.05f, 0.02f);
+    [SerializeField] private Color calmColor = new Color(0f, 0.8f, 0.25f);
 
     [Header("Emission")]
-    [SerializeField] private float emissionIntensity = 2.5f;
-
+    [SerializeField] private float emissionIntensity = 0.3f;
     private void Awake()
     {
         if (targetRenderers == null || targetRenderers.Length == 0)
@@ -83,8 +82,14 @@ public class NPCEmotionController : MonoBehaviour
                 if (material.HasProperty("_EmissionColor"))
                 {
                     material.EnableKeyword("_EMISSION");
-                    material.SetColor("_EmissionColor", color * emissionIntensity);
-                }
+                    Color emissionColor = new Color(
+                        color.r * emissionIntensity,
+                        color.g * emissionIntensity,
+                        color.b * emissionIntensity,
+                        1f
+                    );
+
+                    material.SetColor("_EmissionColor", emissionColor);                }
             }
         }
     }
