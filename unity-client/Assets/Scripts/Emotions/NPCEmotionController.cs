@@ -6,7 +6,7 @@ public class NPCEmotionController : MonoBehaviour
     [SerializeField] private Renderer[] targetRenderers;
 
     [Header("Material Filters")]
-    [SerializeField] private string[] glowMaterialKeywords = { "Glow", "Eyes" };
+    [SerializeField] private string[] glowMaterialKeywords = { "Glow", "Eyes","Gold_Primary" };
 
     [Header("Emotion Colors")]
     [SerializeField] private Color neutralColor = new Color(0.1f, 1f, 0.2f);
@@ -14,6 +14,9 @@ public class NPCEmotionController : MonoBehaviour
     [SerializeField] private Color fearColor = new Color(0.15f, 0.15f, 1f);
     [SerializeField] private Color angerColor = new Color(1f, 0.05f, 0.02f);
     [SerializeField] private Color calmColor = new Color(0f, 0.8f, 0.25f);
+
+    [Header("Debug Label")]
+    [SerializeField] private NPCEmotionDebugLabel debugLabel;
 
     [Header("Emission")]
     [SerializeField] private float emissionIntensity = 0.3f;
@@ -23,6 +26,11 @@ public class NPCEmotionController : MonoBehaviour
         {
             targetRenderers = GetComponentsInChildren<Renderer>();
         }
+
+        if (debugLabel == null)
+        {
+            debugLabel = GetComponentInChildren<NPCEmotionDebugLabel>();
+        }
     }
 
     public void ApplyEmotion(EmotionResponse response)
@@ -30,6 +38,15 @@ public class NPCEmotionController : MonoBehaviour
         Color emotionColor = GetColorForEmotion(response.emotion);
 
         ApplyGlowColor(emotionColor);
+
+        if (debugLabel != null)
+        {
+            debugLabel.UpdateLabel(response);
+        }
+        else
+        {
+            Debug.LogWarning("NPCEmotionController has no debug label assigned.");
+        }
 
         Debug.Log("NPC emotion applied: " + response.emotion);
     }
