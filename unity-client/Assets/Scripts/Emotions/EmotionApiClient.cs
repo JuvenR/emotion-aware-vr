@@ -92,5 +92,17 @@ public class EmotionApiClient : MonoBehaviour
         {
             Debug.LogWarning("No NPCEmotionController found in the current scene.");
         }
+
+
+        EnvironmentEmotionController environment = FindAnyObjectByType<EnvironmentEmotionController>();
+
+        if (environment != null)
+        {
+            environment.ApplyEmotion(response);
+        }
+        else
+        {
+            Debug.LogWarning("No EnvironmentEmotionController found in the current scene.");
+        }
     }
 }
