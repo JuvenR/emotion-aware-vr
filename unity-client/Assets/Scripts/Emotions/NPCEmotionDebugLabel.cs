@@ -13,7 +13,7 @@ public class NPCEmotionDebugLabel : MonoBehaviour
         }
     }
 
-    public void UpdateLabel(EmotionResponse response)
+    public void UpdateLabel(EmotionResponse response, Color emotionColor)
     {
         if (labelText == null)
         {
@@ -25,6 +25,8 @@ public class NPCEmotionDebugLabel : MonoBehaviour
             $"Emotion: {response.emotion}\n" +
             $"Intensity: {response.intensity:0.00}\n" +
             $"Behavior: {response.behavior_tag}";
+
+        labelText.color = emotionColor;
 
         Debug.Log("Debug label updated: " + response.emotion);
     }

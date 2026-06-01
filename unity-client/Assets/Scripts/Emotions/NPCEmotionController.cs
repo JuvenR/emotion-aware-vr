@@ -33,7 +33,7 @@ public class NPCEmotionController : MonoBehaviour
         }
     }
 
-    public void ApplyEmotion(EmotionResponse response)
+   public void ApplyEmotion(EmotionResponse response)
     {
         Color emotionColor = GetColorForEmotion(response.emotion);
 
@@ -41,7 +41,7 @@ public class NPCEmotionController : MonoBehaviour
 
         if (debugLabel != null)
         {
-            debugLabel.UpdateLabel(response);
+            debugLabel.UpdateLabel(response, emotionColor);
         }
         else
         {
