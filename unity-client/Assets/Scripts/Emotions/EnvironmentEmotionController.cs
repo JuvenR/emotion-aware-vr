@@ -7,11 +7,10 @@ public class EnvironmentEmotionController : MonoBehaviour
 
     [Header("Emotion Light Colors")]
     [SerializeField] private Color neutralColor = new Color(1f, 1f, 1f);
-    [SerializeField] private Color anxietyColor = new Color(0.2f, 0.45f, 1f);
-    [SerializeField] private Color fearColor = new Color(0.05f, 0.05f, 0.5f);
-    [SerializeField] private Color angerColor = new Color(1f, 0.1f, 0.05f);
-    [SerializeField] private Color calmColor = new Color(0.4f, 1f, 0.5f);
-
+    [SerializeField] private Color calmColor = new Color(0.39f, 0.96f, 0.68f);      // green / calm
+    [SerializeField] private Color angerColor = new Color(1f, 0.23f, 0.19f);        // red / anger
+    [SerializeField] private Color anxietyColor = new Color(1f, 0.72f, 0.01f);      // amber / anxiety
+    [SerializeField] private Color fearColor = new Color(0.43f, 0.36f, 0.96f);      // indigo-purple / fear
     [Header("Intensity")]
     [SerializeField] private float neutralIntensity = 1.2f;
     [SerializeField] private float anxietyIntensity = 0.8f;
